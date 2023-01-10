@@ -1,0 +1,10 @@
+tasks:
+  - init: |
+      sdk install java 17.0.5.fx-zulu
+      sdk use java 17.0.5.fx-zulu
+      mvn clean install
+    command: |
+      mvn spring-boot:run
+ports:
+  - port: 8080
+    onOpen: open-browser
