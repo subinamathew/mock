@@ -4,6 +4,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+
+import com.services.spring.model.Quote;
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.web.client.RestTemplate;
+import com.services.spring.services.MyJWTService;
+
 @RestController
 public class MyRestController {
 
@@ -12,15 +18,12 @@ public class MyRestController {
         return "End Points \n ";
     }
 
-
+    @RequestMapping(value ="/rest")
     public String getJWTToken() {
         MyJWTService myservice = new MyJWTService();
-        WebClient client = WebClient.create();
-        //WebClient.ResponseSpec responseSpec = client.get()
-        //    .uri("http://example.com")
-        //    .retrieve();
-       // return responseSpec.bodyToMono(String.class).block();
-       return myservice.getJWTSource();
+        RestTemplate restTemplate = new RestTemplate();
+        Quote quote = restTemplate.getForObject(myservice.getJWTSource(), Quote.class);
+        return quote.toString();
     }
 
 
