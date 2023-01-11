@@ -1,3 +1,4 @@
+
 tasks:
   - init: |
       sdk install java 17.0.5.fx-zulu
@@ -8,3 +9,7 @@ tasks:
 ports:
   - port: 8080
     onOpen: open-browser
+
+vscode:
+  extensions:
+    - vscjava.vscode-java-pack

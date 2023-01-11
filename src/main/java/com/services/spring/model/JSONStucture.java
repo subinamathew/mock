@@ -3,13 +3,13 @@ package com.services.spring.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Quote {
+public class JSONStucture {
 
     private String origin;
     private String url;
 
 
-    public Quote() {
+    public JSONStucture() {
     }
 
     public String getOrigin() {
@@ -30,10 +30,7 @@ public class Quote {
 
     @Override
     public String toString() {
-        return "Quote{" +
-                "type='" + origin + '\'' +
-                ", value=" + url +
-                '}';
+        return origin;
     }
 
 }
