@@ -6,6 +6,8 @@ conjur:
    subpath: conjur/path
    application:
       url: "https://conjur.com"
+   secret:
+      name: my secret
 gcp:
    service:
       name: my-gcp-service

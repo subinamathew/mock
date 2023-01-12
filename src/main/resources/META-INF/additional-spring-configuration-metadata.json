@@ -2,17 +2,17 @@
   {
     "name": "conjur.root",
     "type": "java.lang.String",
-    "description": "A description for 'conjur root path'"
+    "description": "A description for conjur root path with no trailing backslash"
   },
   {
     "name": "conjur.application.url",
     "type": "java.lang.String",
-    "description": "A description for 'conjur.application.url'"
+    "description": "A description for 'conjur.application.url' with no trailing backslash"
   },
   {
     "name": "conjur.subpath",
     "type": "java.lang.String",
-    "description": "A description for 'conjur.subpath'"
+    "description": "A description for 'conjur.subpath' with no trailing backslash"
   },
   {
     "name": "gcp.service.name",
@@ -28,5 +28,15 @@
     "name": "gcp.project.id",
     "type": "java.lang.String",
     "description": "A description for 'gcp.project.id'"
+  },
+  {
+    "name": "conjur.secret.name",
+    "type": "java.lang.String",
+    "description": "A description for 'conjur.secret.name'"
+  },
+  {
+    "name": "conjur.secret.name",
+    "type": "java.lang.String",
+    "description": "A description for 'conjur.secret.name'"
   }
 ]}

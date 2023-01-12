@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
+import com.services.spring.services.ConjurService;
 import com.services.spring.services.GCPIdentityService;
 
 @RestController
@@ -15,14 +16,18 @@ public class MyRestController {
     @Autowired
     GCPIdentityService gcpIdentityService;
 
+    @Autowired
+    ConjurService conjurService;
+
     @RequestMapping(value ="/")
     public String getGCPToken() {
         RestTemplate restTemplate = new RestTemplate();
         String JWTToken = "";
         try {
-            JWTToken = gcpIdentityService.GCPRequestURL("myaddress");
+            String audience = conjurService.conjurGcpAudience();
+            JWTToken = gcpIdentityService.GCPRequestURL(audience);
             //JWTToken = restTemplate.getForObject(gcpIdentityService.GCPRequestURL(gcpIdentityService.getJWTSource()), String.class);
-        } catch (RestClientException | UnsupportedEncodingException  e) {
+        } catch (Exception  e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
