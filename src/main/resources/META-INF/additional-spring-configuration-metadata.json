@@ -1,0 +1,32 @@
+{"properties": [
+  {
+    "name": "conjur.root",
+    "type": "java.lang.String",
+    "description": "A description for 'conjur root path'"
+  },
+  {
+    "name": "conjur.application.url",
+    "type": "java.lang.String",
+    "description": "A description for 'conjur.application.url'"
+  },
+  {
+    "name": "conjur.subpath",
+    "type": "java.lang.String",
+    "description": "A description for 'conjur.subpath'"
+  },
+  {
+    "name": "gcp.service.name",
+    "type": "java.lang.String",
+    "description": "A description for 'gcp.service.name'"
+  },
+  {
+    "name": "gcp.stage.name",
+    "type": "java.lang.String",
+    "description": "A description for 'gcp.stage.name'"
+  },
+  {
+    "name": "gcp.project.id",
+    "type": "java.lang.String",
+    "description": "A description for 'gcp.project.id'"
+  }
+]}

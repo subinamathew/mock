@@ -1,0 +1,15 @@
+spring:
+   application:
+      name: gcpjwtservice
+conjur:
+   root: conjur/cyberark/host/project
+   subpath: conjur/path
+   application:
+      url: "https://conjur.com"
+gcp:
+   service:
+      name: my-gcp-service
+   stage:
+      name: developer
+   project:
+      id: gcp123456
