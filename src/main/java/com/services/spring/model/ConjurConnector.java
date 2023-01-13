@@ -12,14 +12,16 @@ public class ConjurConnector {
     @Value("${conjur.authnpath}")
     private String gcpAuthnPath;
 
+    @Value("${conjur.projectpath}")
+    private String conjurProjectPath;
+
     @Value("${conjur.application.url}")
     private String conjurURL;
 
-    @Value("${conjur.secret.name}")
-    private String conjurSecretName;
-
     private String CONJUR_HEADER_KEY = "Authorization";
     private String CONJUR_HEADER_VALUE = "Token token=";
+    private String CONJUR_SECRET_DEFAULT = "secrets/default";
+
  
     public String getConjurMetadataKey() {
         return CONJUR_HEADER_KEY;
@@ -33,7 +35,7 @@ public class ConjurConnector {
      *  This can be used to get the complete URL
      **/
     public String getConjurGcpAudience(String gcpServiceIdentity)  {
-        final String audience = this.conjurAudience + '/' + gcpServiceIdentity;
+        final String audience = this.conjurAudience + "/" + gcpServiceIdentity;
         return audience;
     }
 
@@ -41,7 +43,7 @@ public class ConjurConnector {
      * This is used to get the Conjur URL.
      */
     public String getConjurAuthURL() {
-        final String conjurURL = this.conjurURL + '/' + this.gcpAuthnPath;
+        final String conjurURL = this.conjurURL + "/" + this.gcpAuthnPath;
         return conjurURL;
     }
 
@@ -53,6 +55,14 @@ public class ConjurConnector {
         return conjurURL;
     }
 
+    /**
+     * This is used to get the Conjur URL.
+     * @param string
+     */
+    public String getConjurSecretURL(String secretVariable, String gcpIdentity ) {
+        final String conjurURL = this.conjurURL + "/" + this.conjurProjectPath + "/" + gcpIdentity + "/" + this.CONJUR_SECRET_DEFAULT + "/" + secretVariable ;
+        return conjurURL;
+    }
     
 
     public String getFormatedJWT (String JWTToken) {

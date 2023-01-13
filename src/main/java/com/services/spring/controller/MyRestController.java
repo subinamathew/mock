@@ -52,13 +52,14 @@ public class MyRestController {
         return conjurAuthToken;
     }
 
-    @RequestMapping(value ="/accessSecret")
-    public String getSecret() {
-        return getSecretFromConjur(getConjurTokenAll());
+    @RequestMapping(value ="/accessSecret/{secretVariable}")
+    public String getSecret(@PathVariable String secretVariable) {
+        System.out.println(secretVariable);
+        return getSecretFromConjur(getConjurTokenAll(), secretVariable);
     }
 
-    private String getSecretFromConjur(String conjurToken) {
-        return conjurService.getConjurSecret(conjurToken);
+    private String getSecretFromConjur(String conjurToken, String secretVariable ) {
+        return conjurService.getConjurSecret(conjurToken, secretVariable);
     }
 
 

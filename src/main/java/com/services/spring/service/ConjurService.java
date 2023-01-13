@@ -3,6 +3,7 @@ package com.services.spring.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -37,23 +38,24 @@ public class ConjurService {
         return conjurAuthToken;
     }
 
-    public String getConjurSecret(String JWTToken) {
+    public String getConjurSecret(String JWTToken, String secretVariable) {
         HttpHeaders headers = new HttpHeaders();
         String conjurAuthValue = conjurConnector.getConjurMetadataValue() + JWTToken;
         headers.set(conjurConnector.getConjurMetadataKey(), conjurAuthValue);
         //header accepts base64
         HttpEntity<String> requestEntity = new HttpEntity<>(conjurConnector.getFormatedJWT(JWTToken),headers);
         RestTemplate restTemplate = new RestTemplate();
-        String conjurAuthToken = "";
-        String conjurUrl = conjurConnector.getConjurAuthURL();
+        String secretValue = "";
+        String conjurSecretUrl = conjurConnector.getConjurSecretURL(secretVariable, gcpIdentityModel.getGCPServiceIdentity());
+        System.out.println(conjurSecretUrl);
         try {
-            ResponseEntity<String> response = restTemplate.postForEntity(conjurUrl,requestEntity, String.class);
-            conjurAuthToken = response.getBody();
+            ResponseEntity<String> response = restTemplate.exchange(conjurSecretUrl, HttpMethod.GET, requestEntity, String.class);
+            secretValue = response.getBody();
         } catch (Exception  e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        return conjurAuthToken;
+        return secretValue;
     }
     
 }
