@@ -26,7 +26,26 @@ public class ConjurService {
         HttpEntity<String> requestEntity = new HttpEntity<>(conjurConnector.getFormatedJWT(JWTToken),headers);
         RestTemplate restTemplate = new RestTemplate();
         String conjurAuthToken = "";
-        String conjurUrl = conjurConnector.getConjurURL();
+        String conjurUrl = conjurConnector.getConjurAuthURL();
+        try {
+            ResponseEntity<String> response = restTemplate.postForEntity(conjurUrl,requestEntity, String.class);
+            conjurAuthToken = response.getBody();
+        } catch (Exception  e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return conjurAuthToken;
+    }
+
+    public String getConjurSecret(String JWTToken) {
+        HttpHeaders headers = new HttpHeaders();
+        String conjurAuthValue = conjurConnector.getConjurMetadataValue() + JWTToken;
+        headers.set(conjurConnector.getConjurMetadataKey(), conjurAuthValue);
+        //header accepts base64
+        HttpEntity<String> requestEntity = new HttpEntity<>(conjurConnector.getFormatedJWT(JWTToken),headers);
+        RestTemplate restTemplate = new RestTemplate();
+        String conjurAuthToken = "";
+        String conjurUrl = conjurConnector.getConjurAuthURL();
         try {
             ResponseEntity<String> response = restTemplate.postForEntity(conjurUrl,requestEntity, String.class);
             conjurAuthToken = response.getBody();
