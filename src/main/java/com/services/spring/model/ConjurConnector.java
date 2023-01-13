@@ -1,10 +1,10 @@
-package com.services.spring.services;
+package com.services.spring.model;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ConjurService {
+public class ConjurConnector {
   
     @Value("${conjur.audience}")
     private String conjurAudience;

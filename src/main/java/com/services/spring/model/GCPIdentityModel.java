@@ -1,4 +1,4 @@
-package com.services.spring.services;
+package com.services.spring.model;
 
 import java.io.UnsupportedEncodingException;
 import org.springframework.beans.factory.annotation.Value;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  *            https://cloud.google.com/compute/docs/instances/verifying-instance-identity
  */
 @Component
-public class GCPIdentityService {
+public class GCPIdentityModel {
 
     private String GCP_METADATA_HEADER_KEY = "Metadata-Flavor";
     private String GCP_METADATA_HEADER_VALUE = "Google";

@@ -21,7 +21,7 @@ while True:
     print(request)
 
     # Send HTTP response
-    response = 'HTTP/1.0 200 OK\n\nHello World'
+    response = 'HTTP/1.0 200 OK\n\nThisIsASecretKey'
     client_connection.sendall(response.encode())
     client_connection.close()
 
