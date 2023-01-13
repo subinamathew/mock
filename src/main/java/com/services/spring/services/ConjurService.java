@@ -5,13 +5,18 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ConjurService {
+
+    private String CONJUR_HEADER = "Metadata-Flavor: Google";
     
     @Value("${conjur.root}")
     private String conjurRootPath;
+
     @Value("${conjur.subpath}")
     private String conjurSubpath;
+
     @Value("${conjur.application.url}")
     private String conjurURL;
+
     @Value("${conjur.secret.name}")
     private String conjurSecretName;
 
@@ -27,8 +32,16 @@ public class ConjurService {
     /**
      *  This can be used to get the complete URL
      **/
-    public String conjurGcpAudience()  {
-        final String url = this.conjurRootPath + '/' + this.conjurSubpath;
-        return url;
+    public String getConjurGcpAudience()  {
+        final String audience = this.conjurRootPath + '/' + this.conjurSubpath;
+        return audience;
+    }
+
+    /**
+     * This is used to get the Conjur URL.
+     */
+    public String getConjurURL() {
+        final String conjurURL = this.conjurURL + '/' + this.conjurSubpath;
+        return conjurURL;
     }
 }

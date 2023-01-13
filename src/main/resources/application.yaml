@@ -3,11 +3,11 @@ spring:
       name: gcpjwtservice
 conjur:
    root: conjur/cyberark/host/project
-   subpath: conjur/path
+   subpath: subpathconjur/path
    application:
       url: "https://conjur.com"
    secret:
-      name: my secret
+      name: mysecret
 gcp:
    service:
       name: my-gcp-service

@@ -11,7 +11,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class GCPIdentityService {
 
-    private String GCP_METADATA_HEADER = "Metadata-Flavor: Google";
+    private String GCP_METADATA_HEADER_KEY = "Metadata-Flavor: Google";
+    private String GCP_METADATA_HEADER_VALUE = "Metadata-Flavor: Google";
     private String GCP_VM_IDENTITY_URL= "http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/identity";
     private String GCP_FORMAT = "?audience=%s&format=full";
 
@@ -19,8 +20,11 @@ public class GCPIdentityService {
         return GCP_VM_IDENTITY_URL;
     }
 
-    public String GCPMetadata() {
-        return GCP_METADATA_HEADER;
+    public String getGCPMetadataKey() {
+        return GCP_METADATA_HEADER_KEY;
+    }
+    public String getGCPMetadataValue() {
+        return GCP_METADATA_HEADER_VALUE;
     }
 
     /**
