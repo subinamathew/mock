@@ -31,10 +31,9 @@ public class MyRestController {
         RestTemplate restTemplate = new RestTemplate();
         String JWTToken = "";
         try {
-            String body = gcpIdentityService.getGCPServiceData();
             HttpHeaders headers = new HttpHeaders();
             headers.set(gcpIdentityService.getGCPMetadataKey(), gcpIdentityService.getGCPMetadataValue());
-            HttpEntity<String> requestEntity = new HttpEntity<>(body, headers);
+            HttpEntity<Void> requestEntity = new HttpEntity<>(headers);
             String gcpServiceIdentity = gcpIdentityService.getGCPServiceIdentity();
             String requestURL = gcpIdentityService.getGCPRequestURL(conjurService.getConjurGcpAudience(gcpServiceIdentity));
             ResponseEntity<String> response = restTemplate.exchange(requestURL,HttpMethod.GET, requestEntity, String.class);
