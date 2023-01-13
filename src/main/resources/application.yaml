@@ -2,10 +2,11 @@ spring:
    application:
       name: gcpjwtservice
 conjur:
-   root: conjur/cyberark/host/project
-   subpath: subpathconjur/path
+   audience: conjur/cyberark/host/projects
+   authnpath: gcpauthn/path
+   projectpath: secrets/path/projects
    application:
-      url: "https://conjur.com"
+      url: "http://localhost:8000"
    secret:
       name: mysecret
 gcp:

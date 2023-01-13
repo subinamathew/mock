@@ -5,14 +5,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ConjurService {
+  
+    @Value("${conjur.audience}")
+    private String conjurAudience;
 
-    private String CONJUR_HEADER = "Metadata-Flavor: Google";
-    
-    @Value("${conjur.root}")
-    private String conjurRootPath;
-
-    @Value("${conjur.subpath}")
-    private String conjurSubpath;
+    @Value("${conjur.authnpath}")
+    private String gcpAuthnPath;
 
     @Value("${conjur.application.url}")
     private String conjurURL;
@@ -20,20 +18,11 @@ public class ConjurService {
     @Value("${conjur.secret.name}")
     private String conjurSecretName;
 
-    @Value("${gcp.service.name}")
-    private String gcpServiceName;
-
-    @Value("${gcp.stage.name}")
-    private String gcpStageName;
-
-    @Value("${gcp.project.id}")
-    private String gcpProjectID;
-
     /**
      *  This can be used to get the complete URL
      **/
-    public String getConjurGcpAudience()  {
-        final String audience = this.conjurRootPath + '/' + this.conjurSubpath;
+    public String getConjurGcpAudience(String gcpServiceIdentity)  {
+        final String audience = this.conjurAudience + '/' + gcpServiceIdentity;
         return audience;
     }
 
@@ -41,7 +30,12 @@ public class ConjurService {
      * This is used to get the Conjur URL.
      */
     public String getConjurURL() {
-        final String conjurURL = this.conjurURL + '/' + this.conjurSubpath;
+        final String conjurURL = this.conjurURL + '/' + this.gcpAuthnPath;
         return conjurURL;
     }
+
+    public String getFormatedJWT (String JWTToken) {
+        return "jwt=" + JWTToken; 
+    }
+
 }

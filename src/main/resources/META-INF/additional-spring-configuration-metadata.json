@@ -1,18 +1,23 @@
 {"properties": [
   {
-    "name": "conjur.root",
+    "name": "conjur.audience",
     "type": "java.lang.String",
-    "description": "A description for conjur root path with no trailing backslash"
+    "description": "A description for conjur path with no trailing backslash"
   },
   {
     "name": "conjur.application.url",
     "type": "java.lang.String",
-    "description": "A description for 'conjur.application.url' with no trailing backslash"
+    "description": "URL where conjur instace is hosted with no trailing backslash"
   },
   {
-    "name": "conjur.subpath",
+    "name": "conjur.authnpath",
     "type": "java.lang.String",
-    "description": "A description for 'conjur.subpath' with no trailing backslash"
+    "description": "'conjur.authnpath' with no trailing backslash is the path for conjur authentication endpoint"
+  },
+  {
+    "name": "conjur.projectpath",
+    "type": "java.lang.String",
+    "description": "'conjur.projectpath' with no trailing backslash is the path for conjur projects and secret endpoint"
   },
   {
     "name": "gcp.service.name",

@@ -5,6 +5,10 @@ tasks:
       mvn clean install
     command: |
       mvn spring-boot:run
+  - name: pythonmock
+    command: |
+      cd mock
+      python server.py
 ports:
   - port: 8080
     onOpen: open-browser
